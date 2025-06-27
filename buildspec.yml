@@ -5,17 +5,11 @@ phases:
     runtime-versions:
       python: 3.11  # If needed
     commands:
-      - echo Installing required tools...
-      - yum install -y unzip
-      - echo Downloading Terraform...
-      - curl -L -o terraform.zip https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip
-      - echo "Listing files to confirm download..."
-      - ls -lh
-      - echo "Unzipping terraform.zip..."
-      - unzip terraform.zip
-      - mv terraform /usr/local/bin/
+      - echo Installing Terraform via HashiCorp YUM repo...
+      - yum install -y yum-utils
+      - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+      - yum -y install terraform
       - terraform --version
-
   pre_build:
     commands:
       - echo Initializing Terraform...
