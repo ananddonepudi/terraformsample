@@ -10,8 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-west-2"
- 
+  region  = "us-west-2" 
 }
 
 resource "aws_instance" "example_server" {
