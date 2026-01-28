@@ -110,11 +110,4 @@ output "IpAddress" {
   value = aws_instance.example_server.public_ip
  
 }
-output "cluster_name" {
-  value = aws_eks_cluster.myekscluster.name
-}
-
-output "cluster_endpoint" {
-  value = aws_eks_cluster.myekscluster.endpoint
-}
 
