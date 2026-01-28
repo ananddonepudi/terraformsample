@@ -73,24 +73,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
   role       = aws_iam_role.eks_cluster_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
-resource "aws_eks_cluster" "myekscluster" {
-/*
-  name     = "myekscluster"
-  role_arn = aws_iam_role.eks_cluster_role.arn
 
-  vpc_config {
-    subnet_ids = [
-      aws_subnet.eks_subnet_1.id,
-      aws_subnet.eks_subnet_2.id
-    ]
-
-  }
-
-  depends_on = [
-    aws_iam_role_policy_attachment.eks_cluster_policy
-  ]
-*/
-}
 resource "aws_iam_role" "eks_node_role" {
   name = "eks-node-role"
 
@@ -120,31 +103,7 @@ resource "aws_iam_role_policy_attachment" "ec2_registry_policy" {
   role       = aws_iam_role.eks_node_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
-resource "aws_eks_node_group" "node_group" {
-/*
-  cluster_name    = aws_eks_cluster.myekscluster.name
-  node_group_name = "my-node-group"
-  node_role_arn   = aws_iam_role.eks_node_role.arn
-  subnet_ids = [
-    aws_subnet.eks_subnet_1.id,
-    aws_subnet.eks_subnet_2.id
-  ]
 
-  scaling_config {
-    desired_size = 2
-    max_size     = 2
-    min_size     = 2
-  }
-
-  instance_types = ["t3.medium"]
-
-  depends_on = [
-    aws_iam_role_policy_attachment.eks_worker_policy,
-    aws_iam_role_policy_attachment.eks_cni_policy,
-    aws_iam_role_policy_attachment.ec2_registry_policy
-  ]
-*/
-}
 
 
 output "IpAddress" {
